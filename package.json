@@ -1,7 +1,7 @@
 {
-  "name": "new-app",
+  "name": "basic-authenticator",
   "version": "1.0.0",
-  "description": "New application schema",
+  "description": "Basic authentication",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
@@ -11,8 +11,8 @@
     "@stryker-mutator/mocha-runner": "^2.4.0",
     "chai": "^4.2.0",
     "cucumber": "^5.1.0",
-    "mocha": "^6.2.2",
-    "release-it": "^12.4.3"
+    "mocha": "^7.1.2",
+    "release-it": "^13.5.8"
   },
   "scripts": {
     "release": "release-it",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unsegnor/new-app.git"
+    "url": "git+https://github.com/unsegnor/basic-authenticator.git"
   },
   "keywords": [
     "New",
@@ -42,7 +42,7 @@
   "author": "Víctor Calatayud Asensio",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/unsegnor/new-app/issues"
+    "url": "https://github.com/unsegnor/basic-authenticator/issues"
   },
-  "homepage": "https://github.com/unsegnor/new-app#readme"
+  "homepage": "https://github.com/unsegnor/basic-authenticator#readme"
 }
