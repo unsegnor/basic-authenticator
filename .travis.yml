@@ -1,5 +1,12 @@
 language: node_js
-node_js:
-    node
-script:
-    npm test
+node_js: node
+script: npm test
+deploy:
+  provider: npm
+  email: lacuentadevictor@gmail.com
+  api_key:
+    secure: azredBOaG57GlLDuUWWQkJaJtSG5UDkXIlKX8kSjqbuvLZBPcmJXmcu22numu5pg7Vo+jdb/QIBbcjcMiPea+sUd5hWTWW09Zwe30ea9VtM50DFwxc/IKHP9NABZg54HFDvl/JJ/WgTiGBlNUccpQoLPnkcjmmWozCtcCD9fdltouczxNP8Jsrtq9ZHKr68T77Y9WqKZ/Giiosf8uUF2Nwzupbs7nuSczEZNw0qi7V6MJvCNj7XvV5HRtKPhqkcw1SGM3huCTmtzrjROCYdUFKP0/wtPINbycc9kBxY0k4xevw7P83LR9o+jp9VjLOt4pRRdQUDdr0iMNRWWynVPzkEGo+7KcEvjWL/xsynRcqbxi4AMT7ZXxuSxfudiQ/sm3iFp7hi8AFyRt9vQ2y3oMQaGN5z14OfGVTdSKVkxQiCMbhvKblwFzkOJ0TomJ+fz/eVwEKMNpdpxRElub+u+5RBVrqNiQ8u6r8vdNkB4/ZA8EsoxIoF514uII8et4qlIXAK0iRkPqxijtdLAKQe2VEELR1pzshinzzoRpQ6g1xUJ4Xpag4ALxe9Pn7v3LzJZhnp0JB5ZK+Dnb6rguFiElCo27Lt4aI9tRAB/h/7beAN9VR7qZD6CPRsNMhnmneXRRX9Eqc3m19U0/R35SF2Po7m9jO1n2mndRUACCKrKDzk=
+  on:
+    tags: true
+    repo: unsegnor/basic-authenticator
+  skip_cleanup: 'true'
