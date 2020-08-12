@@ -3,21 +3,24 @@
   "version": "1.0.0",
   "description": "Basic authentication",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "async-javascript": "^1.2.2",
+    "persistent-programming": "^3.0.11"
+  },
   "devDependencies": {
-    "@stryker-mutator/core": "^2.4.0",
-    "@stryker-mutator/javascript-mutator": "^2.4.0",
-    "@stryker-mutator/mocha-framework": "^2.4.0",
-    "@stryker-mutator/mocha-runner": "^2.4.0",
+    "@stryker-mutator/core": "^2.5.0",
+    "@stryker-mutator/javascript-mutator": "^2.5.0",
+    "@stryker-mutator/mocha-framework": "^2.5.0",
+    "@stryker-mutator/mocha-runner": "^2.5.0",
     "chai": "^4.2.0",
     "cucumber": "^5.1.0",
-    "mocha": "^7.1.2",
-    "release-it": "^13.5.8"
+    "mocha": "^7.2.0",
+    "release-it": "^13.6.6"
   },
   "scripts": {
     "release": "release-it",
     "test": "npm run test-mocha && npm run test-cucumber",
-    "test-mocha": "npm run test-doubles && npm run test-domain && npm run test-adapters && npm run test-integration && npm run test-mutation",
+    "test-mocha": "npm run test-doubles && npm run test-domain && npm run test-adapters && npm run test-integration",
     "test-domain": "mocha domain --recursive",
     "test-doubles": "mocha test-doubles --recursive",
     "test-adapters": "mocha adapters --recursive",

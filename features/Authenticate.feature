@@ -12,6 +12,7 @@ Feature: Authenticate
     Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
     When I authenticate the user "registeredLogin" with the password "registeredPassword"
     Then the system must respond with the user id "registeredUserId"
+    And the user must no receive any error
 
   Scenario: existing login and incorrect password
     Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
