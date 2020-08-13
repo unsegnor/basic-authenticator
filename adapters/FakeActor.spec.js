@@ -1,8 +1,8 @@
 const {expect} = require('chai')
-const Adapter = require('./FakeUser')
+const Adapter = require('./FakeActor')
 const Port = require('../domain/Thing.port')
 
-describe('FakeUser', function(){
+describe('FakeActor', function(){
     beforeEach(function(){
         this.adapter = Adapter()
     })

@@ -17,15 +17,15 @@ defineParameterType({
 
 defineParameterType({
   regexp: /Victor|Admin/,
-  transformer: function (userName) {
-    switch (userName) {
+  transformer: function (actorName) {
+    switch (actorName) {
       case 'Victor':
-        return this.users.victor
+        return this.actors.victor
       case 'Admin':
-        return this.users.admin
+        return this.actors.admin
       default:
-        throw new Error(`User ${userName} not supported`)
+        throw new Error(`Actor ${actorName} does not exist`)
     }
   },
-  name: 'user'
+  name: 'actor'
 })

@@ -5,7 +5,7 @@ Feature: Register
 
   Scenario: Register new user
     Given the login "newUser" is not registered
-    When I register a new user with login "newUser" and the password "newPassword"
+    When Admin registers a new user with login "newUser" and the password "newPassword"
     Then the system must create a new user in the repository
     And the system must register the new user with the login "newUser" and the password "hashedNewPassword"
 

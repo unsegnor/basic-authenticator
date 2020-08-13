@@ -1,7 +1,7 @@
 // features/support/world.js
 const { setWorldConstructor, After, Before } = require('cucumber')
 const Authenticator = require('../../domain/Authenticator')
-const FakeUser = require('../../adapters/FakeUser')
+const FakeActor = require('../../adapters/FakeActor')
 const ObjectRepository = require('persistent-programming/adapters/InMemoryObjectRepository')
 
 class CustomWorld {
@@ -22,9 +22,9 @@ class CustomWorld {
 }
 
 Before(async function(){
-  this.users = {
-    admin: FakeUser(),
-    victor: FakeUser()
+  this.actors = {
+    admin: FakeActor(),
+    victor: FakeActor()
   }
 
   this.repo = ObjectRepository()

@@ -6,11 +6,11 @@ module.exports = function({state, repo}){
         register
     })
 
-    async function authenticate({user, login, password}){
+    async function authenticate({actor, login, password}){
         var users = await state.get('users')
 
         if(!users) {
-            return await user.notifyError({errorCode:'not-registered-user'})
+            return await actor.notifyError({errorCode:'not-registered-user'})
         }
 
         var userWithLogin = await asyncFind(users, async function(user){
@@ -19,21 +19,21 @@ module.exports = function({state, repo}){
         })
 
         if(!userWithLogin) {
-            return await user.notifyError({errorCode:'not-registered-user'})
+            return await actor.notifyError({errorCode:'not-registered-user'})
         }
 
         var userPassword = await userWithLogin.get('password')
         if(userPassword !== password){
-            return await user.notifyError({errorCode:'incorrect-password'})
+            return await actor.notifyError({errorCode:'incorrect-password'})
         }
 
         var userId = await userWithLogin.get('userId')
-        return await user.sendValue({value:userId})
+        return await actor.sendValue({value:userId})
     }
 
-    async function register({login, password, userId}){
+    async function register({actor, login, password, userId}){
         var user = await repo.getNew()
-        await user.set('userId', userId)
+        if(userId != undefined) await user.set('userId', userId)
         await user.set('login', login)
         await user.set('password', password)
         await state.add('users', user)
