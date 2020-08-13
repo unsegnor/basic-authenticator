@@ -14,7 +14,7 @@ When('{actor} authenticates with login {string} and password {string}', async fu
   await this.authenticator.authenticate({actor, login, password})
 });
 
-When('{actor} registers a new user with login {string} and the password {string}', async function (user, login, password) {
+When('{actor} registers a new user with login {string} and the password {string}', async function (actor, login, password) {
   await this.authenticator.register({actor, login, password})
 });
 
