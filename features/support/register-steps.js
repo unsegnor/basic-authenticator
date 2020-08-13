@@ -7,21 +7,21 @@ Given('the login {string} is not registered', function (login) {
 
 Given('the login {string} is registered with the password {string} and the id {string}',
   async function (login, password, userId) {
-    await this.authenticator.register({login, password, userId})
+    await this.authenticator.register({user: this.users.admin, login, password, userId})
 });
 
-When('I authenticate the user {string} with the password {string}', async function (login, password) {
-  await this.authenticator.authenticate({login, password})
+When('{user} authenticates with login {string} and password {string}', async function (user, login, password) {
+  await this.authenticator.authenticate({user, login, password})
 });
 
-Then('the system must respond with an error saying {string}', async function (expectedError) {
-  expect(await this.user.receivedTheError(expectedError)).to.equal(true)
+Then('{user} must receive an error saying {string}', async function (user, expectedError) {
+  expect(await user.receivedTheError(expectedError)).to.equal(true)
 });
 
-Then('the system must respond with the user id {string}', async function (userId) {
-  expect(await this.user.receivedTheValue(userId)).to.equal(true)
+Then('{user} must receive the user id {string}', async function (user, userId) {
+  expect(await user.receivedTheValue(userId)).to.equal(true)
 });
 
-Then('the user must no receive any error', async function () {
-  expect(await this.user.receivedErrors()).to.equal(false)
+Then('{user} must not receive any error', async function (user) {
+  expect(await user.receivedErrors()).to.equal(false)
 });

@@ -4,20 +4,20 @@ Feature: Authenticate
   I want to authenticate myself
 
   Scenario: Not existing login
-    Given the login "notRegisteredUser" is not registered
-    When I authenticate the user "notRegisteredUser" with the password "anyPassword"
-    Then the system must respond with an error saying "not-registered-user"
+    Given the login "victor" is not registered
+    When Victor authenticates with login "victor" and password "victorPassword"
+    Then Victor must receive an error saying "not-registered-user"
 
   Scenario: existing login and correct password
-    Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
-    When I authenticate the user "registeredLogin" with the password "registeredPassword"
-    Then the system must respond with the user id "registeredUserId"
-    And the user must no receive any error
+    Given the login "victor" is registered with the password "victorPassword" and the id "victorId"
+    When Victor authenticates with login "victor" and password "victorPassword"
+    Then Victor must receive the user id "victorId"
+    And Victor must not receive any error
 
   Scenario: existing login and incorrect password
-    Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
-    When I authenticate the user "registeredLogin" with the password "otherPassword"
-    Then the system must respond with an error saying "incorrect-password"
+    Given the login "victor" is registered with the password "victorPassword" and the id "victorId"
+    When Victor authenticates with login "victor" and password "wrongPassword"
+    Then Victor must receive an error saying "incorrect-password"
 
 
     #User authenticated means mapped to a user id from the user repository

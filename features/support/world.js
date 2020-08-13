@@ -22,11 +22,14 @@ class CustomWorld {
 }
 
 Before(async function(){
-  this.user = FakeUser()
+  this.users = {
+    admin: FakeUser(),
+    victor: FakeUser()
+  }
+
   this.repo = ObjectRepository()
   this.state = await this.repo.getNew()
   this.authenticator = Authenticator({
-    user: this.user,
     repo: this.repo,
     state: this.state})
 })

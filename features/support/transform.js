@@ -14,3 +14,18 @@ defineParameterType({
   },
   name: 'operation'
 })
+
+defineParameterType({
+  regexp: /Victor|Admin/,
+  transformer: function (userName) {
+    switch (userName) {
+      case 'Victor':
+        return this.users.victor
+      case 'Admin':
+        return this.users.admin
+      default:
+        throw new Error(`User ${userName} not supported`)
+    }
+  },
+  name: 'user'
+})

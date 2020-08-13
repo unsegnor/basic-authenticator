@@ -1,12 +1,12 @@
 const {asyncFind} = require('async-javascript')
 
-module.exports = function({user, state, repo}){
+module.exports = function({state, repo}){
     return Object.freeze({
         authenticate,
         register
     })
 
-    async function authenticate({login, password}){
+    async function authenticate({user, login, password}){
         var users = await state.get('users')
 
         if(!users) {
