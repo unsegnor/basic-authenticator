@@ -12,14 +12,5 @@ Feature: Register
     Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
     When Admin registers a new user with login "registeredLogin" and the password "newPassword"
     Then Admin must receive an error saying "duplicated-login"
-    And the system must not register a new user with login "registeredLogin", password "newPassword" and id "registeredUserId"
+    And the system must not register a user with login "registeredLogin", password "newPassword" and id "registeredLogin"
 
-  Scenario: Register existing login
-    Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
-    When I register the user "otherUserId" with the login "registeredLogin" and the password "newPassword"
-    Then the system must respond with an error saying "duplicated-login"
-
-  Scenario: Register existing user with different login
-    Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
-    When I register the user "registeredUserId" with the login "registeredLogin" and the password "newPassword"
-    Then the system must respond with an error saying "user-registered-with-a-different-login"
