@@ -33,7 +33,7 @@ module.exports = function({state, repo}){
 
     async function register({actor, login, password, userId}){
         var user = await repo.getNew()
-        if(userId != undefined) await user.set('userId', userId)
+        await user.set('userId', userId != undefined ? userId : login)
         await user.set('login', login)
         await user.set('password', password)
         await state.add('users', user)

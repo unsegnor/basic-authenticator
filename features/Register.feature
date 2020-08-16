@@ -6,14 +6,13 @@ Feature: Register
   Scenario: Register new user
     Given the login "newUser" is not registered
     When Admin registers a new user with login "newUser" and the password "newPassword"
-    Then the system must create a new user in the repository
-    And the system must register the new user with the login "newUser" and the password "hashedNewPassword"
+    Then the system must register a user with login "newUser", password "newPassword" and id "newUser"
 
   Scenario: Register new user with existing login
     Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
-    When I register a new user with login "registeredLogin" and the password "newPassword"
-    Then the system must respond with an error saying "duplicated-login"
-    And the system must not register the new user with the login "newUser" and the password "hashedNewPassword"
+    When Admin registers a new user with login "registeredLogin" and the password "newPassword"
+    Then Admin must receive an error saying "duplicated-login"
+    And the system must not register a new user with login "registeredLogin", password "newPassword" and id "registeredUserId"
 
   Scenario: Register existing login
     Given the login "registeredLogin" is registered with the password "registeredPassword" and the id "registeredUserId"
