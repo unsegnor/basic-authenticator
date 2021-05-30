@@ -14,3 +14,7 @@ Feature: Register
     Then Admin must receive an error saying "duplicated-login"
     And the system must not register a user with login "registeredLogin", password "newPassword" and id "registeredLogin"
 
+  Scenario: Not admin user are not able to register
+    When Victor registers a new user with login "victor" and the password "victorPassword"
+    Then Victor must receive an error saying "unauthorized"
+    And the system must not register a user with login "victor", password "victorPassword" and id "victor"

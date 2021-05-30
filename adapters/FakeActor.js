@@ -1,15 +1,29 @@
-module.exports = function(){
+module.exports = function({login, password}){
     let receivedError = ''
     let receivedSomeError = false
     let receivedValue = ''
+
+    if(!login) throw new Error('Missing login')
+    if(!password) throw new Error('Missing password')
 
     return Object.freeze({
         notifyError,
         sendValue,
         receivedTheError,
         receivedTheValue,
-        receivedErrors
+        receivedErrors,
+        getCredentials,
+        setLogin,
+        setPassword
     })
+
+    async function setLogin(newLogin){
+        login = newLogin
+    }
+
+    async function setPassword(newPassword){
+        password = newPassword
+    }
 
     async function notifyError({errorCode}){
         receivedError = errorCode
@@ -30,5 +44,9 @@ module.exports = function(){
 
     async function receivedErrors(){
         return receivedSomeError
+    }
+
+    async function getCredentials(){
+        return {login, password}
     }
 }

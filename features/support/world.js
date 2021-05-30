@@ -6,6 +6,8 @@ const ObjectRepository = require('persistent-programming/adapters/InMemoryObject
 
 class CustomWorld {
   constructor () {
+    this.adminLogin = "adminLogin"
+    this.adminPassword = "adminPassword"
   }
 
   setTo (number) {
@@ -23,15 +25,18 @@ class CustomWorld {
 
 Before(async function(){
   this.actors = {
-    admin: FakeActor(),
-    victor: FakeActor()
+    admin: FakeActor({login: this.adminLogin, password: this.adminPassword}),
+    victor: FakeActor({login: 'victor', password: 'victorPassword'})
   }
 
   this.repo = ObjectRepository()
   this.state = await this.repo.getNew()
   this.authenticator = Authenticator({
     repo: this.repo,
-    state: this.state})
+    state: this.state,
+    adminLogin: this.adminLogin,
+    adminPassword: this.adminPassword
+  })
 })
 
 setWorldConstructor(CustomWorld)

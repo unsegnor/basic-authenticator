@@ -1,26 +1,31 @@
 const {asyncFind} = require('async-javascript')
 
-module.exports = function({state, repo}){
+module.exports = function({state, repo, adminLogin, adminPassword}){
+    var adminId = 'adminId'
+    
     return Object.freeze({
         authenticate,
         register
     })
 
-    async function authenticate({actor, login, password}){
-        var users = getUsers()
+    async function authenticate({actor}){
+        var credentials = await actor.getCredentials()
 
+        if(credentials.login == adminLogin && credentials.password == adminPassword) return adminId
+
+        var users = getUsers()
         if(!users) {
             return await actor.notifyError({errorCode:'not-registered-user'})
         }
 
-        var userWithLogin = await getUserWithLogin(login)
+        var userWithLogin = await getUserWithLogin(credentials.login)
 
         if(!userWithLogin) {
             return await actor.notifyError({errorCode:'not-registered-user'})
         }
 
         var userPassword = await userWithLogin.get('password')
-        if(userPassword !== password){
+        if(userPassword !== credentials.password){
             return await actor.notifyError({errorCode:'incorrect-password'})
         }
 
@@ -29,9 +34,14 @@ module.exports = function({state, repo}){
     }
 
     async function register({actor, login, password, userId}){
+        var actorId = await authenticate({actor})
+
+        if(actorId != adminId){
+            await actor.notifyError({errorCode: 'unauthorized'})
+            return
+        }
 
         if(await existsUserWithLogin(login)){
-            console.log('duplicated login',login)
             return await actor.notifyError({errorCode:'duplicated-login'})
         }
 

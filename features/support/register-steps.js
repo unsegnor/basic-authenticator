@@ -8,11 +8,13 @@ Given('the login {string} is not registered', function (login) {
 
 Given('the login {string} is registered with the password {string} and the id {string}',
   async function (login, password, userId) {
-    await this.authenticator.register({user: this.actors.admin, login, password, userId})
+    await this.authenticator.register({actor: this.actors.admin, login, password, userId})
 });
 
 When('{actor} authenticates with login {string} and password {string}', async function (actor, login, password) {
-  await this.authenticator.authenticate({actor, login, password})
+  actor.setLogin(login)
+  actor.setPassword(password)
+  await this.authenticator.authenticate({actor})
 });
 
 When('{actor} registers a new user with login {string} and the password {string}', async function (actor, login, password) {

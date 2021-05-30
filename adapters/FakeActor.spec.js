@@ -1,10 +1,14 @@
 const {expect} = require('chai')
 const Adapter = require('./FakeActor')
 const Port = require('../domain/Thing.port')
+const expectToThrow = require('expect-to-throw')
 
 describe('FakeActor', function(){
     beforeEach(function(){
-        this.adapter = Adapter()
+        this.adapter = Adapter({
+            login: 'fakeLogin',
+            password: 'fakePassword'
+        })
     })
 
     Port()
@@ -50,6 +54,44 @@ describe('FakeActor', function(){
 
         it('must return false when no error was received', async function(){
             expect(await this.adapter.receivedErrors()).to.equal(false)
+        })
+    })
+
+    describe('getCredentials', function(){
+        it('must return the credentials', async function(){
+            var credentials = await this.adapter.getCredentials()
+            expect(credentials.login).to.equal('fakeLogin')
+            expect(credentials.password).to.equal('fakePassword')
+        })
+    })
+
+    describe('setLogin', function(){
+        it('must set the login', async function(){
+            await this.adapter.setLogin('newLogin')
+            var credentials = await this.adapter.getCredentials()
+            expect(credentials.login).to.equal('newLogin')
+            expect(credentials.password).to.equal('fakePassword')
+        })
+    })
+
+    describe('setPassword', function(){
+        it('must set the password', async function(){
+            await this.adapter.setPassword('newPassword')
+            var credentials = await this.adapter.getCredentials()
+            expect(credentials.login).to.equal('fakeLogin')
+            expect(credentials.password).to.equal('newPassword')
+        })
+    })
+
+    it('must throw when created without login', async function(){
+        await expectToThrow('missing login',async function(){
+            Adapter({password: 'fakePassword'})
+        })
+    })
+
+    it('must throw when created without password', async function(){
+        await expectToThrow('missing password',async function(){
+            Adapter({login: 'fakeLogin'})
         })
     })
 })
