@@ -6,7 +6,7 @@
   "dependencies": {
     "async-javascript": "^1.2.2",
     "expect-to-throw": "^3.0.2",
-    "persistent-programming": "^3.0.11"
+    "persistent-programming": "^3.1.15"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^2.5.0",
