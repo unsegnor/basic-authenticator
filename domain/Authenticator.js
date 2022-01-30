@@ -2,7 +2,9 @@ const {asyncFind} = require('async-javascript')
 
 module.exports = function({state, repo, adminLogin, adminPassword}){
     var adminId = 'adminId'
-    
+
+    //now we can do state = await repo.getRoot('private-key-aergervavstvsrtvsrvt-srt-vr-tv-rt-srt-r')
+
     return Object.freeze({
         authenticate,
         register
@@ -38,6 +40,16 @@ module.exports = function({state, repo, adminLogin, adminPassword}){
 
         if(actorId != adminId){
             await actor.notifyError({errorCode: 'unauthorized'})
+            return
+        }
+
+        if(userId == adminId){
+            await actor.notifyError({errorCode: 'not-allowed-userId'})
+            return
+        }
+
+        if(login == adminLogin){
+            await actor.notifyError({errorCode: 'not-allowed-login'})
             return
         }
 

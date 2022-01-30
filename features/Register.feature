@@ -18,3 +18,13 @@ Feature: Register
     When Victor registers a new user with login "victor" and the password "victorPassword"
     Then Victor must receive an error saying "unauthorized"
     And the system must not register a user with login "victor", password "victorPassword" and id "victor"
+
+  Scenario: Register new user with admin id
+    When Admin registers a new user with login "admin", password "password" and id "adminId"
+    Then Admin must receive an error saying "not-allowed-userId"
+    And the system must not register a user with login "adminId", password "password" and id "adminId"
+
+  Scenario: Register new user with admin login
+    When Admin registers a new user with login "adminLogin" and the password "password"
+    Then Admin must receive an error saying "not-allowed-login"
+    And the system must not register a user with login "adminId", password "password" and id "adminId"

@@ -21,6 +21,10 @@ When('{actor} registers a new user with login {string} and the password {string}
   await this.authenticator.register({actor, login, password})
 });
 
+When('{actor} registers a new user with login {string}, password {string} and id {string}', async function (actor, login, password, userId) {
+  await this.authenticator.register({actor, login, password, userId})
+});
+
 Then('{actor} must receive an error saying {string}', async function (actor, expectedError) {
   expect(await actor.receivedTheError(expectedError)).to.equal(true)
 });
