@@ -14,3 +14,18 @@ defineParameterType({
   },
   name: 'operation'
 })
+
+defineParameterType({
+  regexp: /Victor|Admin/,
+  transformer: function (actorName) {
+    switch (actorName) {
+      case 'Victor':
+        return this.actors.victor
+      case 'Admin':
+        return this.actors.admin
+      default:
+        throw new Error(`Actor ${actorName} does not exist`)
+    }
+  },
+  name: 'actor'
+})
