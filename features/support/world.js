@@ -30,10 +30,9 @@ Before(async function(){
   }
 
   this.repo = ObjectRepository()
-  this.state = await this.repo.getNew()
   this.authenticator = Authenticator({
+    appId: 'test-application-id',
     repo: this.repo,
-    state: this.state,
     adminLogin: this.adminLogin,
     adminPassword: this.adminPassword
   })

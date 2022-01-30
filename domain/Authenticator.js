@@ -1,14 +1,16 @@
 const {asyncFind} = require('async-javascript')
 
-module.exports = function({state, repo, adminLogin, adminPassword}){
+module.exports = function({repo, appId, adminLogin, adminPassword}){
     var adminId = 'adminId'
-
-    //now we can do state = await repo.getRoot('private-key-aergervavstvsrtvsrvt-srt-vr-tv-rt-srt-r')
 
     return Object.freeze({
         authenticate,
         register
     })
+
+    async function getState(){
+        return await repo.getRoot(appId)
+    }
 
     async function authenticate({actor}){
         var credentials = await actor.getCredentials()
@@ -61,7 +63,7 @@ module.exports = function({state, repo, adminLogin, adminPassword}){
         await user.set('userId', userId != undefined ? userId : login)
         await user.set('login', login)
         await user.set('password', password)
-        await state.add('users', user)
+        await (await getState()).add('users', user)
     }
 
     async function existsUserWithLogin(login){
@@ -78,6 +80,6 @@ module.exports = function({state, repo, adminLogin, adminPassword}){
     }
 
     async function getUsers(){
-        return await state.get('users')
+        return await (await getState()).get('users')
     }
 }
