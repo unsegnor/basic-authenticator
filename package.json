@@ -15,7 +15,7 @@
     "@stryker-mutator/mocha-runner": "^2.5.0",
     "chai": "^4.2.0",
     "cucumber": "^5.1.0",
-    "mocha": "^7.2.0"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "release": "release-it",
